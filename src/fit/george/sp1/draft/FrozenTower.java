@@ -18,6 +18,21 @@ public class FrozenTower extends Tower {
 
 		super(pX, pY, pTiledTextureRegion, vertexBufferObjectManager);
 		totalCost = price;
+
+		int [][] damage_levels = {{100, 2, 3}, {100, 2, 3}, {50, 2, 3}, {50, 2, 3}};
+		int [][] distance_levels = {{50, 10}, {50, 10}, {50, 10}, {50, 10}};
+		
+		upgradeDamagePrice = damage_levels;
+		upgradeDistancePrice = distance_levels;
+		
+		MAX_DAMAGE_LEVELS = upgradeDamagePrice.length;
+		MAX_DISTANCE_LEVELS = upgradeDistancePrice.length;
+		
+		animation_speed = 200;
+		attackRate = 0.4f;
+		distance = 100;
+		pRangeCircle.calculateCircle(distance);
+		
 		
 	}
 	

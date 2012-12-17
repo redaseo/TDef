@@ -62,7 +62,7 @@ public class TowerMenu {
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if(pSceneTouchEvent.isActionUp()) {
 					
-					if((game_Scene.game_instance.money.GetMoney() - FrozenTower.GetPrice()) >= 0) {
+					if((game_Scene.game_instance.money.GetMoney() - QuickfireTower.GetPrice()) >= 0) {
 						game_Scene.game_instance.towerObserver.createQuickfireTower(x - (x % 60), y - (y % 60));
 						hide();
 					}
@@ -82,7 +82,7 @@ public class TowerMenu {
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 				if(pSceneTouchEvent.isActionUp()) {
 					
-					if((game_Scene.game_instance.money.GetMoney() - QuickfireTower.GetPrice()) >= 0) {
+					if((game_Scene.game_instance.money.GetMoney() - FrozenTower.GetPrice()) >= 0) {
 						game_Scene.game_instance.towerObserver.createFrozenTower(x - (x % 60), y - (y % 60));
 						hide();
 					}

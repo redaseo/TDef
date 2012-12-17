@@ -34,12 +34,7 @@ public class Tower extends AnimatedSprite {
 	private static Random randomGenerator = new Random();
 	
 	
-	/**
-	 * <code>Price</code>: tower's price.
-	 */
-	//public static int price = 100;
-	
-	
+
 	
 	/**
 	 * <code>Health</code>: tower's health.
@@ -50,7 +45,7 @@ public class Tower extends AnimatedSprite {
 	/**
 	 * <code>Distance</code>: tower's distance.
 	 */
-	private int distance = 100;
+	protected int distance = 100;
 	
 	
 	/**
@@ -71,10 +66,6 @@ public class Tower extends AnimatedSprite {
 	private int damage_high = 10;
 	
 	
-	/**
-	 * <code>Delay</code>: tower's delay.
-	 */
-	private static int delay = 20;
 	
 	
 	/**
@@ -82,11 +73,6 @@ public class Tower extends AnimatedSprite {
 	 */
 	private Tower instance;
 	
-	
-	/**
-	 * <code>Animation</code>: is tower animation run.
-	 */
-	private boolean animation;
 	
 	
 	/**
@@ -103,19 +89,21 @@ public class Tower extends AnimatedSprite {
 
 	
 	private Timer attackTimer;
-	private float attackRate = 0.2f;
+	protected float attackRate = 0.2f;
+	protected int animation_speed = 100;
 	private Text text;
 	private Sprite sellIcon, towerUpgradeDistance, towerUpgradeDamage, towerCancel; //icon sprites
 	private boolean first = false;
-	private RangeCircle pRangeCircle; //tower range circle
+	protected RangeCircle pRangeCircle; //tower range circle
 	protected int totalCost; //total tower's price with all updates
 	private float x; //X coordinate of tower
 	private float y; //Y coordinate of tower
 	
 	
-	private int [][] upgradeDamagePrice = {{50, 2, 3}, {50, 2, 3}, {50, 2, 3}, {50, 2, 3}}; //price, low damage, high damage
-	private int [][] upgradeDistancePrice = {{50, 25}, {50, 25}, {50, 25}, {50, 25}}; //price, distance
-	private final int MAX_LEVELS = 4; //tower upgrade max levels
+	protected int [][] upgradeDamagePrice = {{50, 2, 3}, {50, 2, 3}, {50, 2, 3}, {50, 2, 3}}; //price, low damage, high damage
+	protected int [][] upgradeDistancePrice = {{50, 25}, {50, 25}, {50, 25}, {50, 25}}; //price, distance
+	protected int MAX_DAMAGE_LEVELS;
+	protected int MAX_DISTANCE_LEVELS;
 	private int curDamageLevel = -1; //current damage level of tower
 	private int curDistanceLevel = -1; //current distance level of tower
 	
@@ -222,14 +210,8 @@ public class Tower extends AnimatedSprite {
 	
 		if (pSceneTouchEvent.isActionUp() && first == true) {
 			
-			
-			//if(spriteTimerHandler.isPause()) spriteTimerHandler.resume();
-			//else spriteTimerHandler.pause();
-			
-			
-			if(game_Scene.game_instance.currentTower == null) {
+			if(game_Scene.game_instance.currentTower == null && game_Scene.isMenuOpen == false) {
 				check();
-				//if(game_Scene.isMenuOpen == true) game_Scene.game_instance.towerMenu.hide();
 				game_Scene.game_instance.currentTower = this;
 			}
 			
@@ -262,10 +244,10 @@ public class Tower extends AnimatedSprite {
 	 * @return
 	 * 	<code>boolean</code>: true - successful upgrade; false - unsuccessful upgrade
 	 */
-	private boolean UpgradeDamage()
+	protected boolean UpgradeDamage()
 	{
 	
-		if(curDamageLevel >= MAX_LEVELS - 1) return false;
+		if(curDamageLevel >= MAX_DAMAGE_LEVELS - 1) return false;
 		else {
 			
 			if(game_Scene.game_instance.money.GetMoney() - upgradeDamagePrice[curDamageLevel + 1][0] >= 0) {
@@ -296,7 +278,7 @@ public class Tower extends AnimatedSprite {
 	private boolean UpgradeDistance()
 	{
 	
-		if(curDistanceLevel >= MAX_LEVELS - 1) return false;
+		if(curDistanceLevel >= MAX_DISTANCE_LEVELS - 1) return false;
 		else {
 			
 			if(game_Scene.game_instance.money.GetMoney() - upgradeDistancePrice[curDistanceLevel + 1][0] >= 0) {
@@ -446,9 +428,11 @@ public class Tower extends AnimatedSprite {
 		super(pX, pY, pTiledTextureRegion, vertexBufferObjectManager);
 		x = pX;
 		y = pY;
-		//totalCost = price;
+		
 		instance = this;
-		animation = false;
+		
+		MAX_DAMAGE_LEVELS = upgradeDamagePrice.length;
+		MAX_DISTANCE_LEVELS = upgradeDistancePrice.length;
 		
 		
 /*
@@ -610,7 +594,7 @@ public class Tower extends AnimatedSprite {
 	 */
 	public void StartFire()
 	{
-		this.animate(100);
+		this.animate(animation_speed);
 	}
 	
 	

@@ -55,6 +55,9 @@ public class MainActivity extends BaseGameActivity
 	private BuildableBitmapTextureAtlas mBitmapTextureAtlas;
 	public RepeatingSpriteBackground mGrassBackground;
 	public TiledTextureRegion dragon;
+	public TiledTextureRegion tower1;
+	public TiledTextureRegion tower2;
+	public TiledTextureRegion tower3;
 	public TiledTextureRegion octopus;
 	public TiledTextureRegion npc;
 	
@@ -143,6 +146,8 @@ public class MainActivity extends BaseGameActivity
 		
 		
 		this.dragon = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(this.mBitmapTextureAtlas, this, "dragon.png", 2, 2);
+		this.tower1 = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(this.mBitmapTextureAtlas, this, "mortal-tower1.png", 2, 2);
+		this.tower2 = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(this.mBitmapTextureAtlas, this, "mortal-tower2.png", 2, 2);
 		this.octopus = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(this.mBitmapTextureAtlas, this, "all.png", 2, 2);
 		this.npc    = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(this.mBitmapTextureAtlas, this, "player.png", 3, 4);
 		this.creepLevel1Texture = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(this.mBitmapTextureAtlas, this, "creepLevel1.png", 3, 4);

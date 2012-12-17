@@ -89,7 +89,7 @@ public class TowerObserver {
 	
 	public void createFrozenTower(float x, float y) {
 		
-		tower = new FrozenTower(x, y, MainActivity.instance.dragon, MainActivity.instance.getVertexBufferObjectManager());
+		tower = new FrozenTower(x, y, MainActivity.instance.tower1, MainActivity.instance.getVertexBufferObjectManager());
 		game_Scene.game_instance.attachChild(tower);
 		game_Scene.game_instance.registerTouchArea(tower);
 		tower.setZIndex(2);
@@ -106,7 +106,7 @@ public class TowerObserver {
 	
 	public void createQuickfireTower(float x, float y) {
 		
-		tower = new QuickfireTower(x, y, MainActivity.instance.dragon, MainActivity.instance.getVertexBufferObjectManager());
+		tower = new QuickfireTower(x, y, MainActivity.instance.tower2, MainActivity.instance.getVertexBufferObjectManager());
 		game_Scene.game_instance.attachChild(tower);
 		game_Scene.game_instance.registerTouchArea(tower);
 		tower.setZIndex(2);
